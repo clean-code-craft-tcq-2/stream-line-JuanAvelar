@@ -1,4 +1,4 @@
-#include "Sender.hpp"
+#include "sender.hpp"
 #include <fstream>
 #include <math.h>
 #include <random>

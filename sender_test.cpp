@@ -10,8 +10,8 @@ TEST_CASE("Check that the data generated is within range"){
   SenderTester tester;
   std::vector<Sensor> all_data = tester.Get_core_data(sender);
   REQUIRE(all_data.size() == test_parameters.size());
-  for(int i = 0; i < all_data.size(); i++){
-    for(int j = 0; j < all_data.at(i)._data_array.size();j++){
+  for(size_t i = 0; i < all_data.size(); i++){
+    for(size_t j = 0; j < all_data.at(i)._data_array.size();j++){
       //Check lower limit
       REQUIRE(all_data.at(i)._data_array.at(j) >= (-test_parameters.at(i).range/2+test_parameters.at(i).offset-test_parameters.at(i).noise_STDDEV));
       //Check upper limit
