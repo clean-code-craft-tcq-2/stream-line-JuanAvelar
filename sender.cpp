@@ -38,7 +38,7 @@ void Sender::parse_input_file(std::ifstream & in){
   while(in.get(letter)){
     // std::cout << letter;
     if(letter == sensor_separator){
-      if(_data_sensors.size() < sensor_index + 2){_data_sensors.push_back(Sensor());}
+      if(_data_sensors.size() < (size_t)sensor_index + 2){_data_sensors.push_back(Sensor());}
       if(data_retrieved_is_valid){
         // std::cout <<"number:" <<number << std::endl;
         _data_sensors.at(sensor_index)._data_array.push_back(std::stof(number));
@@ -73,7 +73,7 @@ void Sender::generate_data(size_t HowManySensors, size_t HowManyData, std::vecto
     _amount_of_sensors = parameters.size();
   }
   _amount_of_data_per_sensor = HowManyData;
-  for(int sensors = 0; sensors < _amount_of_sensors; sensors++){
+  for(size_t sensors = 0; sensors < _amount_of_sensors; sensors++){
     Sensor mysensorObject;
     if(!parameters.empty()){
       range = parameters.at(sensors).range;
@@ -95,16 +95,15 @@ void Sensor::generate_new_sine(size_t HowMany, float range, float offset, float 
   static size_t seed_offset = 0;//offset applied if the timestamp gets too close with each other between two sensors
   std::mt19937::result_type seed = dev() ^ (
             (std::mt19937::result_type)
-            std::chrono::duration_cast<std::chrono::seconds>(
-                std::chrono::system_clock::now().time_since_epoch()
-                ).count() +
+            std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count()
+            +
             (std::mt19937::result_type)
-            std::chrono::duration_cast<std::chrono::microseconds>(
-                std::chrono::high_resolution_clock::now().time_since_epoch()
-              ).count() ) + seed_offset++;
+            std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count()
+            +
+            seed_offset++);
   std::mt19937 generator(seed);
   std::normal_distribution<float> dist(mean, noise_std_dev);
-  for(int data = 0; data < HowMany; data++){
+  for(size_t data = 0; data < HowMany; data++){
     float noise = dist(generator);
     _data_array.push_back(((sin(ratio_to_complete_sine*data*PI/180)*range/2) + offset) + noise);
     if(_data_array.back() < (-range/2+offset-noise_std_dev)) _data_array.back() = (-range/2+offset-noise_std_dev);
