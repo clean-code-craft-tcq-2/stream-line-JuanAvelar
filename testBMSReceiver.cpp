@@ -7,8 +7,8 @@
 TEST_CASE("Test for finding Max , Min and Avg value for temp") 
 {
   float temp[5]= {2, 5, 10, 15, 20};
-  float Max = CalculateMaxValue(temp, 5);
-  float Min = CalculateMinValue(temp, 5);
+  float Max = FindMaximumSample(temp, 5);
+  float Min = FindMininimumSample(temp, 5);
   float Avg = CalculateAvg(temp , 5);
   REQUIRE(Max == 20);
   REQUIRE(Min == 2);
@@ -17,10 +17,10 @@ TEST_CASE("Test for finding Max , Min and Avg value for temp")
 
 TEST_CASE("Test for finding Max , Min and Avg value for SOC") 
 {
-  float SOC[5]= {5, 5, 10, 5, 10};
-  float Max = CalculateMaxValue(SOC, 5);
-  float Min = CalculateMinValue(SOC, 5);
-  float Avg = CalculateAvg(SOC , 5);
+  float Voltage[5]= {5, 5, 10, 5, 10};
+  float Max = CalculateMaxValue(Voltage, 5);
+  float Min = CalculateMinValue(Voltage, 5);
+  float Avg = CalculateAvg(Voltage , 5);
   REQUIRE(Max == 10);
   REQUIRE(Min == 5);
   REQUIRE(Avg==7);
