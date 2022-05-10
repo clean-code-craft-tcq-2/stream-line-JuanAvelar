@@ -15,7 +15,7 @@ void ReadInputfromConsole(float* Temp,float* Voltage , int SampleCount)
 float FindMininimumSample(float* BMSParameterInput, int SampleCount)
 {
   float MinValue = InputData[0];
-    for(int i=1; i<TotalSamples; i++)
+    for(int i=1; i<SampleCount; i++)
     {
         if(MinValue > InputData[i])
         {
@@ -30,7 +30,7 @@ float FindMininimumSample(float* BMSParameterInput, int SampleCount)
 float FindMaximumSample(float* BMSParameterInput, int SampleCount)
 {
   float MaxValue = InputData[0];
-    for(int i=1; i<TotalSamples; i++)
+    for(int i=1; i<SampleCount; i++)
     {
         if(MaxValue < InputData[i])
         {
@@ -45,11 +45,11 @@ float FindSampleAverage(float* InputData, int SampleCount)
 {
     float Avg = 0;
     float Sum = 0;
-    for(int i = 0; i < TotalSamples; i++)
+    for(int i = 0; i < SampleCount; i++)
     {
         Sum = Sum + InputData[i];
     }
-	    Avg = Sum/TotalSamples;
+	    Avg = Sum/SampleCount;
     return Avg;
 }
 
