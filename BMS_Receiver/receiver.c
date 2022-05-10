@@ -1,10 +1,10 @@
+#include <stdlib.h>
+#include <string.h>
 #include <stdio.h>
 #include "receiver.h"
 #include "math.h"
-#include <stdlib.h>
-#include <string.h>
 
-void ReadBMSParametersfromConsole(float* Temp,float* SOC , int TotalSamples)
+void ReadInputfromConsole(float* Temp,float* SOC , int TotalSamples)
 {
   char ReadString[250];
   
