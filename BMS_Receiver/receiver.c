@@ -4,11 +4,11 @@
 #include "receiver.h"
 #include "math.h"
 
-void ReadInputfromConsole(float* Temp,float* SOC , int TotalSamples)
+void ReadInputfromConsole(float* Temp,float* Voltage , int SampleCount)
 {
   char ReadString[250];
   
-  for(int i=0; i<TotalSamples ; i++)
+  for(int i=0; i<SampleCount ; i++)
     {
 	    if(scanf("%50s", ReadString) == EOF) 
        {
@@ -18,12 +18,12 @@ void ReadInputfromConsole(float* Temp,float* SOC , int TotalSamples)
         scanf("%20s", ReadString); //deg
         scanf("%20s", ReadString); //C 
         scanf("%20s", ReadString); //,
-        scanf("%f",&SOC[i]);
-	  printf("%.3f \t %.3f\n",Temp[i],SOC[i]);
+        scanf("%f",&Voltage[i]);
+	  printf("%.3f \t %.3f\n",Temp[i],Voltage[i]);
     }
 }
 
-float CalculateMinValue(float* InputData, int TotalSamples)
+float FindMininimumSample(float* InputData, int SampleCount)
 {
   float MinValue = InputData[0];
     for(int i=1; i<TotalSamples; i++)
@@ -38,7 +38,7 @@ float CalculateMinValue(float* InputData, int TotalSamples)
 
 
 
-float CalculateMaxValue(float* InputData, int TotalSamples)
+float FindMaximumSample(float* InputData, int SampleCount)
 {
   float MaxValue = InputData[0];
     for(int i=1; i<TotalSamples; i++)
@@ -52,7 +52,7 @@ float CalculateMaxValue(float* InputData, int TotalSamples)
 }
                         
 
-float CalculateAvg(float* InputData, int TotalSamples)
+float FindSampleAverage(float* InputData, int SampleCount)
 {
     float Avg = 0;
     float Sum = 0;
