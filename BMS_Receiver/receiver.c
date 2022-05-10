@@ -6,24 +6,13 @@
 
 void ReadInputfromConsole(float* Temp,float* Voltage , int SampleCount)
 {
-  char ReadString[250];
-  
   for(int i=0; i<SampleCount ; i++)
     {
-	    if(scanf("%50s", ReadString) == EOF) 
-       {
-            break;
-        }
-        scanf("%f",&Temp[i]);
-        scanf("%20s", ReadString); //deg
-        scanf("%20s", ReadString); //C 
-        scanf("%20s", ReadString); //,
-        scanf("%f",&Voltage[i]);
-	  printf("%.3f \t %.3f\n",Temp[i],Voltage[i]);
+          scanf("%f\t%f\n", &Temp[i], &Voltage[i]);
     }
 }
 
-float FindMininimumSample(float* InputData, int SampleCount)
+float FindMininimumSample(float* BMSParameterInput, int SampleCount)
 {
   float MinValue = InputData[0];
     for(int i=1; i<TotalSamples; i++)
@@ -38,7 +27,7 @@ float FindMininimumSample(float* InputData, int SampleCount)
 
 
 
-float FindMaximumSample(float* InputData, int SampleCount)
+float FindMaximumSample(float* BMSParameterInput, int SampleCount)
 {
   float MaxValue = InputData[0];
     for(int i=1; i<TotalSamples; i++)
